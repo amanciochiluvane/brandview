@@ -270,8 +270,9 @@ Notícias
         const pElement = document.querySelector("p.descr");
         pElement.innerHTML = `<em>${descricao}`;
 
-        const imgElement = document.querySelector(".downloadable-image");
-        imgElement.innerHTML = `<img src="${imagemUrl}" style='background-image: url("${imagemUrl}");'>`;
+          const imgElement = document.querySelector(".downloadable-image img");
+        imgElement.src = imagemUrl;
+        imgElement.style.backgroundImage = `url("${imagemUrl}")`;
       }
     })
     .catch((err) => console.error(err));
