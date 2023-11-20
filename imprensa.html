@@ -270,11 +270,11 @@ Notícias
         const pElement = document.querySelector("p.descr");
         pElement.innerHTML = `<em>${descricao}`;
 
-          const imgElement = document.querySelector(".downloadable-image m-mobile-only");
+          const imgElement = document.querySelector("div.downloadable-image m-mobile-only");
         imgElement.src = imagemUrl;
         imgElement.style.backgroundImage = `url("${imagemUrl}")`;
       }
-      const imgElement2 = document.querySelector(".downloadable-image m-desktop-flex-only");
+      const imgElement2 = document.querySelector("div.downloadable-image m-desktop-flex-only");
         imgElement2.src = imagemUrl;
         imgElement2.style.backgroundImage = `url("${imagemUrl}")`;
       
