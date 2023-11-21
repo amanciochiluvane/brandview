@@ -243,7 +243,17 @@ Notícias
     </div>
     </div>
 
-<script>
+<script type="module" >
+  import imageUrlBuilder from 'https://cdn.skypack.dev/@sanity/image-url';
+
+ 
+
+ const builder = imageUrlBuilder({
+    projectId: 'i0qygmlp',
+    dataset: 'production',
+    apiVersion: '2021-10-21',
+    useCdn: true, // ou false, dependendo das suas necessidades
+  });
   // Select the DOM-element, so that you can replace it with content
   let PROJECT_ID = "i0qygmlp";
   let DATASET = "production";
@@ -251,7 +261,7 @@ Notícias
 
   // Compose the URL for your project's endpoint and add the query
   let PROJECT_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
-
+  
   // fetch the content
   fetch(PROJECT_URL)
     .then((res) => res.json())
@@ -259,10 +269,12 @@ Notícias
       // Verifica se há pelo menos um resultado
       if (result.length > 0) {
         // Extrai as informações do primeiro item
-        const firstItem = result[0];
+        const firstItem = result[result.length -1];
         const titulo = firstItem.titulo;
         const descricao = firstItem.descricao;
-        const imagemUrl = firstItem.imagem?.asset?.url; // Altere conforme a estrutura real do seu documento
+        const imagemUrl = builder.image(firstItem?.imagem?.asset?._ref);
+        
+        console.log(imagemUrl);
 
         // Atualiza os elementos HTML
         document.querySelector("h2.downloadable-title").textContent = titulo;
@@ -279,211 +291,90 @@ Notícias
       
     })
     .catch((err) => console.error(err));
+ 
 </script>
 
 
 <section class='list-cards-container l-centered-content-container' codename='articles_block_1'>
-<h2 class='cards-title m-has-cta'>
-Últimos updates
-<a class='cta-btn m-arrow m-desktop-only' href='/mz/pt/ultimas-noticias' hreflang='pt-mz'>
-Todas as notícias
-<svg class="svg-icon "><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</a>
-</h2>
-<div class='cards-container'>
-
-
-<a class='card m-article-card' href='imprensa/brandview-revela-as-tendencias-de-marketing-para-2023' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/MarketingTrends_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Estudos
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Brandview revela as tendências de marketing para 2023
-</h3>
-Neste artigo, nós reunimos tanto os novos rumos do marketing para 2023 quanto as tendências que tivemos em 2022, inclusive para redes sociais. Acompanhe para entender o que de fato vai fazer sentido para sua empresa!
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/como-explodir-seu-negocio-e-vender-mais-com-o-marketing' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/Marketing_digital_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Eventos
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Como Explodir seu negócio e vender mais com o Marketing...                 
-</h3>
-Não é fácil ter talento e trabalhar todos os dias sem ver resultados. Nosso objectivo é que você intensifique as suas vendas e maximize os seus ganhos tornando-se na sua própria agência de MKT Digital e alcance o público certo...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/uxene-smart-city-futura-cidade-ecologica-e-inteligente-maputo' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/uxene-smarcity.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Tecnologia
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Uxene Smart City, futura cidade ecológica e inteligente Maputo...
-
-</h3>
-O Projecto urbanístico Uxene Smart City, lançado esta terça-feira (07), em Maputo, está avaliado em 3.5 biliões de USD. Durante a apresentação do projecto, o Director Executivo da Uxene Smart City, Henrique Bettencourt, explicou...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/westart-posiciona-se-como-a-nova-aposta-edtech-de-transformacao' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/westart_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Press Release
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-We Start: Posiciona-se como a nova aposta edtech de trans...
-</h3>
-Marcio Quartilho comandará a agência no País, a qual se coloca à frente de uma era de construção de marca orientada a performance. Com identidade totalmente nova e capacidades evoluídas, a iPROSPEC...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/quais-sao-as-soft-skills_mais_valorizadas-em-2023' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/softskills_moz_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Competências
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Quais são as Soft Skills mais valorizadas em 2023?
-</h3>
-Preparados? Numa altura em que falamos cada vez mais que um profissional se compõem de características técnicas, mas acima de tudo, das apelidadas soft skill (traduzindo literalmente para português, capacidades suaves)...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/conexoes-inteligentes-metodologias-de-networking' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/networking_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Empreendedorismo
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Conexões Inteligentes: Metodologias de Networking
-</h3>
-Por mais simples que o conceito possa parecer, Networking vai muito de uma rede de contactos e poucas pessoas sabem aproveita-lo adequadamente. Para ser estratégico e gerar o máximo proveito...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-
-<a class='card m-article-card' href='imprensa/reinventando-o-retorno-um-mundo-pos-covid-19' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/covid-19_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Reinventando o retorno: Um Mundo Pós-COVID-19
-</h3>
-A velocidade é importante: não basta que as empresas recuperem gradativamente sua receita à medida que a crise for passando. Elas terão de repensar profundamente seu perfil de receita para se posicionarem no longo prazo e saírem à frente da concorrência.
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-<a class='card m-article-card' href='imprensa/o-sexo-na-era-digital-o-mais-completo-raio-x das relacoes' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/sexoedigital_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Tecnologia
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-O Sexo na Era Digital!: o mais completo raio-x das re...
-</h3>
-Será que estamos preparados para todas as possibilidades de conexão trazidas pelas redes sociais e aplicativos de relacionamentos? É essa reflexão que dá início ao livro Relacionamentos Amorosos na Era Digital, escrito por Adriana Nunan e Maria Amélia Penido, doutoras...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-
-<a class='card m-article-card' href='imprensa/marketing_digital_e_alavanca_de_empreendedorismo_feminino_em_mocambique' target=''>
-<div class='card-header' style='background-image: url(&#39;assets/images/imprensa/marketing_women_2023.jpg?q=75&amp;fm=jpg&amp;w=960&#39;)'>
-<div class='card-header-category'>
-Sociedade
-</div>
-</div>
-<div class='card-body'>
-<h3 class='card-header-title'>
-Marketing Digital é alavanca de empreendedorismo feminino em Moçambique...
-</h3>
-Pesquisa inédita do grupo Dentsu Aegis Network revela que maioria das latino-americanas consideram tecnologia fundamental para o sucesso; no Brasil, vendas online é nicho a ser explorado
-As mulhere...
-</div>
-<div class='card-footer'>
-<p>
-Ler mais
-<svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</p>
-</div>
-</a>
-
-
-
-<div class='l-centered-content-container list-mobile-cta'>
-<a class='cta-btn m-arrow m-mobile-only' href='imprensa' hreflang='pt-mz'>
-Todas as notícias
-<svg class="svg-icon "><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
-</a>
-</div>
-</div>
+  <h2 class='cards-title m-has-cta'>
+    Últimos updates
+    <a class='cta-btn m-arrow m-desktop-only' href='/mz/pt/ultimas-noticias' hreflang='pt-mz'>
+      Todas as notícias
+      <svg class="svg-icon "><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
+    </a>
+  </h2>
+  <div class='cards-container' id="news-container"></div>
 </section>
+
+<script type="module">
+  import imageUrlBuilder from 'https://cdn.skypack.dev/@sanity/image-url';
+
+  const builder = imageUrlBuilder({
+    projectId: 'i0qygmlp',
+    dataset: 'production',
+    apiVersion: '2021-10-21',
+    useCdn: true,
+  });
+
+  let PROJECT_ID = "i0qygmlp";
+  let DATASET = "production";
+  let QUERY = encodeURIComponent('*[_type == "imprensa"]');
+
+  let PROJECT_URL = `https://${PROJECT_ID}.api.sanity.io/v2021-10-21/data/query/${DATASET}?query=${QUERY}`;
+
+  // fetch the content
+ // ...
+
+// fetch the content
+fetch(PROJECT_URL)
+  .then((res) => res.json())
+  .then(({ result }) => {
+    // Ordena os resultados com base na data (supondo que há um campo 'data')
+    result.sort((a, b) => new Date(b.data) - new Date(a.data));
+
+    // Verifica se há pelo menos um resultado
+    const newsContainer = document.getElementById("news-container");
+
+    result.forEach((item) => {
+      const titulo = item.titulo;
+      const descricao = item.descricao;
+      const imagemUrl = builder.image(item?.imagem?.asset?._ref);
+
+      // Criação de elementos HTML dinâmicos
+      const newsCard = document.createElement("a");
+      newsCard.classList.add('card', 'm-article-card');
+      newsCard.href = `noticia.html?id=${item._id}` // Adicione o link real aqui
+
+      newsCard.innerHTML = `
+        <div class='card-header' style='background-image: url("${imagemUrl}")'>
+          <div class='card-header-category'>
+            ${item.category}
+          </div>
+        </div>
+        <div class='card-body'>
+          <h3 class='card-header-title'>
+            ${titulo}
+          </h3>
+          <div class='card-descr'>
+            <em>${descricao}</em>
+          </div>
+        </div>
+        <div class='card-footer'>
+          <p>
+            Ler mais
+            <svg class="svg-icon m-link-arrow"><use class="svg-icon-inner" xlink:href="#arrow-icon"></use></svg>
+          </p>
+        </div>
+      `;
+
+      // Anexa o card ao contêiner
+      newsContainer.appendChild(newsCard);
+    });
+  })
+  .catch((err) => console.error(err));
+
+</script>
+
 
 
 <div class='floating-cta-container'>
